@@ -7,7 +7,7 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        
+
         # Removing unique constraint on 'Vote', fields ['key', 'ip_address', 'object_id', 'content_type', 'user']
         db.delete_unique('djangoratings_vote', ['key', 'ip_address', 'object_id', 'content_type_id', 'user_id'])
 
@@ -19,7 +19,7 @@ class Migration(SchemaMigration):
 
 
     def backwards(self, orm):
-        
+
         # Removing unique constraint on 'Vote', fields ['content_type', 'object_id', 'cookie', 'user', 'key', 'ip_address']
         db.delete_unique('djangoratings_vote', ['content_type_id', 'object_id', 'cookie', 'user_id', 'key', 'ip_address'])
 
@@ -99,7 +99,7 @@ class Migration(SchemaMigration):
             'date_added': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
             'date_changed': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'ip_address': ('django.db.models.fields.IPAddressField', [], {'max_length': '15'}),
+            'ip_address': ('django.db.models.fields.GenericIPAddressField', [], {'max_length': '15'}),
             'key': ('django.db.models.fields.CharField', [], {'max_length': '32'}),
             'object_id': ('django.db.models.fields.PositiveIntegerField', [], {}),
             'score': ('django.db.models.fields.IntegerField', [], {}),

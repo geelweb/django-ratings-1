@@ -5,9 +5,9 @@ from south.v2 import SchemaMigration
 from django.db import models
 
 class Migration(SchemaMigration):
-    
+
     def forwards(self, orm):
-        
+
         # Adding model 'IgnoredObject'
         db.create_table('djangoratings_ignoredobject', (
             ('object_id', self.gf('django.db.models.fields.PositiveIntegerField')()),
@@ -19,17 +19,17 @@ class Migration(SchemaMigration):
 
         # Adding field 'SimilarUser.exclude'
         db.add_column('djangoratings_similaruser', 'exclude', self.gf('django.db.models.fields.BooleanField')(default=False, blank=True), keep_default=False)
-    
-    
+
+
     def backwards(self, orm):
-        
+
         # Deleting model 'IgnoredObject'
         db.delete_table('djangoratings_ignoredobject')
 
         # Deleting field 'SimilarUser.exclude'
         db.delete_column('djangoratings_similaruser', 'exclude')
-    
-    
+
+
     models = {
         'auth.group': {
             'Meta': {'object_name': 'Group'},
@@ -108,12 +108,12 @@ class Migration(SchemaMigration):
             'date_added': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
             'date_changed': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'ip_address': ('django.db.models.fields.IPAddressField', [], {'max_length': '15'}),
+            'ip_address': ('django.db.models.fields.GenericIPAddressField', [], {'max_length': '15'}),
             'key': ('django.db.models.fields.CharField', [], {'max_length': '32'}),
             'object_id': ('django.db.models.fields.PositiveIntegerField', [], {}),
             'score': ('django.db.models.fields.IntegerField', [], {}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'votes'", 'null': 'True', 'to': "orm['auth.User']"})
         }
     }
-    
+
     complete_apps = ['djangoratings']
